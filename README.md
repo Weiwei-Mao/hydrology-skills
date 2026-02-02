@@ -259,6 +259,271 @@
 
 ---
 
+## 技能选择决策树
+
+### 数据处理工具选择
+
+```
+数据大小评估
+    │
+    ├─ < 1GB，适合内存
+    │   ├─ 需要最快速度 → polars
+    │   ├─ 熟悉 pandas → csv-data-summarizer
+    │   └─ Excel 格式 → xlsx
+    │
+    ├─ 1GB - 100GB
+    │   ├─ 有多核 CPU → dask（并行处理）
+    │   └─ 单机内存不够 → vaex（核外计算）
+    │
+    └─ > 100GB 或集群
+        ├─ 云端运行 → modal + dask
+        └─ 本地集群 → dask（分布式模式）
+```
+
+### 可视化工具选择
+
+```
+图表类型需求
+    │
+    ├─ 快速探索数据
+    │   ├─ 统计关系 → seaborn
+    │   └─ 自定义绘图 → matplotlib
+    │
+    ├─ 交互式图表
+    │   ├─ 网页展示 → plotly
+    │   └─ 演示汇报 → scientific-slides
+    │
+    └─ 期刊投稿
+        ├─ 多面板图 → scientific-visualization
+        ├─ 地理数据 → geopandas + matplotlib
+        └─ 色盲友好 → scientific-visualization（自动处理）
+```
+
+### 机器学习工具选择
+
+```
+任务类型
+    │
+    ├─ 传统机器学习
+    │   ├─ 分类/回归 → scikit-learn
+    │   ├─ 时间序列 → aeon
+    │   └─ 需要解释 → scikit-learn + shap
+    │
+    ├─ 深度学习
+    │   ├─ 标准 PyTorch → pytorch-lightning
+    │   ├─ 时间序列 → transformers + pytorch-lightning
+    │   └─ 图神经网络 → torch-geometric（河流网络）
+    │
+    └─ 参数优化
+        ├─ 单目标 → pymoo（简单模式）
+        └─ 多目标 → pymoo（Pareto 前沿）
+```
+
+### 写作工具选择
+
+```
+写作阶段
+    │
+    ├─ 文献调研
+    │   ├─ 综合搜索 → literature-review
+    │   ├─ 快速查找 → research-lookup
+    │   └─ 实时信息 → perplexity-search
+    │
+    ├─ 假设构思
+    │   ├─ 头脑风暴 → scientific-brainstorming
+    │   ├─ 假设制定 → hypothesis-generation
+    │   └─ 批判评估 → scientific-critical-thinking
+    │
+    ├─ 论文撰写
+    │   ├─ 正文写作 → scientific-writing
+    │   ├─ 引用管理 → citation-management
+    │   └─ 期刊模板 → venue-templates
+    │
+    └─ 项目申请
+        ├─ 撰写提案 → research-grants
+        ├─ 参考模板 → market-research-reports
+        └─ 制作海报 → latex-posters
+```
+
+---
+
+## 典型工作流示例
+
+### 工作流 1：水文数据分析与预测
+
+```mermaid
+graph LR
+    A[数据获取] --> B[探索性分析]
+    B --> C[预处理]
+    C --> D[特征工程]
+    D --> E[模型训练]
+    E --> F[模型解释]
+    F --> G[结果可视化]
+
+    A:::tools -->|xlsx, csv-data-summarizer| B
+    B:::tools -->|exploratory-data-analysis, seaborn| C
+    C:::tools -->|polars, dask| D
+    D:::tools -->|statsmodels| E
+    E:::tools -->|scikit-learn, aeon| F
+    F:::tools -->|shap| G
+    G:::tools -->|scientific-visualization, plotly|
+
+    classDef tools fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+```
+
+**技能组合链：** `xlsx` → `csv-data-summarizer` → `polars` → `statsmodels` → `scikit-learn` → `shap` → `scientific-visualization`
+
+### 工作流 2：流域建模与参数率定
+
+```mermaid
+graph LR
+    A[地理数据处理] --> B[模型数据准备]
+    B --> C[参数优化]
+    C --> D[云端运行]
+    D --> E[结果分析]
+
+    A:::tools -->|geopandas| B
+    B:::tools -->|polars, file-organizer| C
+    C:::tools -->|pymoo| D
+    D:::tools -->|modal, get-available-resources| E
+    E:::tools -->|matplotlib, geopandas|
+
+    classDef tools fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px;
+```
+
+**技能组合链：** `geopandas` → `polars` → `pymoo` → `modal` → `matplotlib`
+
+### 工作流 3：论文撰写全流程
+
+```mermaid
+graph LR
+    A[文献调研] --> B[假设构思]
+    B --> C[数据分析]
+    C --> D[论文撰写]
+    D --> E[图表制作]
+    E --> F[投稿准备]
+
+    A:::tools -->|literature-review, research-lookup| B
+    B:::tools -->|hypothesis-generation, scientific-brainstorming| C
+    C:::tools -->|polars, scikit-learn| D
+    D:::tools -->|scientific-writing, citation-management| E
+    E:::tools -->|scientific-visualization, scientific-schematics| F
+    F:::tools -->|venue-templates, latex-posters|
+
+    classDef tools fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+```
+
+**技能组合链：** `literature-review` → `hypothesis-generation` → `polars` → `scientific-writing` → `scientific-visualization` → `venue-templates`
+
+### 工作流 4：项目申请书撰写
+
+```mermaid
+graph LR
+    A[背景调研] --> B[研究设计]
+    B --> C[预算评估]
+    C --> D[撰写提案]
+    D --> E[制作演示]
+
+    A:::tools -->|perplexity-search, openalex-database| B
+    B:::tools -->|scientific-critical-thinking| C
+    C:::tools -->|datacommons-client, fred-economic-data| D
+    D:::tools -->|research-grants, market-research-reports| E
+    E:::tools -->|scientific-slides, latex-posters|
+
+    classDef tools fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
+```
+
+**技能组合链：** `openalex-database` → `scientific-critical-thinking` → `datacommons-client` → `research-grants` → `scientific-slides`
+
+---
+
+## 技能组合推荐
+
+### 常用技能链
+
+| 场景 | 推荐组合链 | 说明 |
+|------|-----------|------|
+| **快速数据分析** | `csv-data-summarizer` → `seaborn` | 导入 → 可视化 |
+| **大规模数据处理** | `dask` → `polars` → `plotly` | 分布式 → 快速处理 → 交互展示 |
+| **时间序列预测** | `aeon` → `statsmodels` → `shap` | 建模 → 评估 → 解释 |
+| **地理空间分析** | `geopandas` → `matplotlib` → `scientific-visualization` | 空间处理 → 绘图 → 出版 |
+| **深度学习** | `pytorch-lightning` → `transformers` → `modal` | 训练 → 模型 → 云部署 |
+| **参数率定** | `pymoo` → `shap` → `matplotlib` | 优化 → 敏感性分析 → 可视化 |
+| **降维聚类** | `umap-learn` → `seaborn` | 降维 → 可视化 |
+| **贝叶斯建模** | `pymc` → `arviz` (内置) → `matplotlib` | 建模 → 诊断 → 绘图 |
+| **文献综述** | `research-lookup` → `literature-review` → `citation-management` | 搜索 → 综述 → 引用 |
+| **学术报告** | `scientific-visualization` → `scientific-schematics` → `scientific-slides` | 图表 → 流程图 → PPT |
+
+### 互补技能搭配
+
+| 主技能 | 搭配技能 | 使用场景 |
+|--------|---------|---------|
+| `polars` | `seaborn` | 数据处理 + 快速可视化 |
+| `scikit-learn` | `shap` | 建模 + 可解释性 |
+| `matplotlib` | `scientific-visualization` | 基础绘图 + 期刊美化 |
+| `scientific-writing` | `citation-management` | 写作 + 引用管理 |
+| `geopandas` | `plotly` | 地理数据 + 交互地图 |
+| `dask` | `modal` | 本地并行 + 云端扩展 |
+| `pymoo` | `statistical-analysis` | 参数优化 + 统计检验 |
+| `literature-review` | `perplexity-search` | 文献搜索 + 实时信息 |
+
+---
+
+## 更新与维护
+
+### 同步上游更新
+
+本项目基于 [anthropics/scientific-skills](https://github.com/anthropics/scientific-skills) 精简而来。同步上游更新的方法：
+
+```bash
+# 1. 添加上游仓库为 remote（仅第一次）
+cd hydrology-skills
+git remote add upstream https://github.com/anthropics/scientific-skills.git
+
+# 2. 获取上游更新
+git fetch upstream
+
+# 3. 查看上游新技能
+git ls-tree upstream/main --name-only | grep -E "^[^/]+/$"
+
+# 4. 选择性添加新技能（示例）
+git checkout upstream/main/new-skill-name -- new-skill-name
+
+# 5. 更新 README.md（手动）
+# - 添加新技能到对应字母分类
+# - 评估推荐度（★★★★★ ~ ★☆☆☆☆）
+# - 更新技能总数
+
+# 6. 提交更新
+git add .
+git commit -m "Add new skill: new-skill-name"
+git push origin main
+```
+
+### 评估新技能建议
+
+遇到上游新技能时，按以下标准评估是否添加：
+
+| 评估维度 | 保留（★★★~★★★★★） | 舍弃（★★~★） |
+|---------|-------------------|-------------|
+| **数据相关** | 水文数据处理、时间序列、地理空间 | 纯生物/医学数据 |
+| **建模相关** | 数值模型辅助、参数优化、ML/DL | 分子动力学、量子化学 |
+| **写作相关** | 学术写作、文献管理、期刊投稿 | 非学术写作 |
+| **跨学科** | 经济数据、环境统计、政策报告 | 纯医学/生物 |
+
+### 更新日志
+
+建议在 README 末尾维护更新日志：
+
+```markdown
+## 更新日志
+
+- 2026-02-01: 初始版本，61 个技能
+- [待更新]: 新增 XXX 技能（★★★★☆）
+```
+
+---
+
 *文档生成时间: 2026-02-01*
 *针对用户：水文学研究、数据分析、机器学习*
 *保留技能数: 61*
