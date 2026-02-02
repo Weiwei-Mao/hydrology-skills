@@ -70,7 +70,7 @@
 | **literature-review** | ★★★★★ | 使用多个学术数据库(PubMed、arXiv、bioRxiv、Semantic Scholar 等)进行综合系统文献综述。**写论文必备** |
 | **market-research-reports** | ★★★☆☆ | 以顶级咨询公司(McKinsey、BCG、Gartner)的风格生成综合市场研究报告(50+ 页)。**写项目书、政策报告的模板和框架很有用** |
 | **markitdown** | ★★★☆☆ | 将文件和办公文档转换为 Markdown。支持 PDF、DOCX、PPTX、XLSX、图像(OCR)、音频(转录)、HTML 等。**文档转换工具** |
-| **matlab** | ★★★★☆ | MATLAB 和 GNU Octave 数值计算，用于矩阵运算、数据分析、可视化和科学计算。**数值计算** |
+| **matlab** | ★★★★☆ | MATLAB 和 GNU Octave 数值计算，用于矩阵运算、数据分析、可视化和科学计算。**数值模型常用** |
 | **matplotlib** | ★★★★★ | 用于完全自定义的低级绘图库。当您需要对每个绘图元素进行细粒度控制时使用。**绘图必备** |
 | **modal** | ★★★★☆ | 在云中运行 Python 代码，具有无服务器容器、GPU 和自动扩展。用于部署 ML 模型、运行批处理作业。**云端运行数值模型** |
 
@@ -249,6 +249,13 @@
 - 制作图表：`scientific-visualization` / `scientific-slides`
 - 项目申请：`research-grants` / `market-research-reports`
 - 文档处理：`pdf` / `xlsx`
+
+### 水文建模辅助
+- 地理数据：`geopandas`
+- 网络分析：`networkx`（河流网络）
+- 参数优化：`pymoo`（多目标优化）
+- 云端计算：`modal`
+- 文件整理：`file-organizer`
 
 ---
 
