@@ -471,9 +471,20 @@ graph LR
 
 ## 更新与维护
 
-### 同步上游更新
+### 自动同步（GitHub Actions）
 
-本项目基于 [anthropics/scientific-skills](https://github.com/anthropics/scientific-skills) 精简而来。同步上游更新的方法：
+本项目已配置 GitHub Actions 自动同步上游，**每天北京时间 9:00 AM 自动运行**：
+
+- 自动检测上游新技能
+- 创建 sync 分支并复制新技能
+- 生成同步报告（包含评估标准）
+- 自动创建 Pull Request 供审核
+
+你也可以在 [Actions 页面](https://github.com/Weiwei-Mao/hydrology-skills/actions) 手动触发同步。
+
+### 手动同步上游
+
+本项目基于 [anthropics/scientific-skills](https://github.com/anthropics/scientific-skills) 精简而来。如需手动同步：
 
 ```bash
 # 1. 添加上游仓库为 remote（仅第一次）
